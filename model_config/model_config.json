@@ -1,0 +1,93 @@
+{
+    "all": {
+        "router": {
+            "model_name": "gemini-3-flash-preview",
+            "category": "gemini",
+            "safety_settings": [
+                {
+                    "category": "HARM_CATEGORY_HARASSMENT",
+                    "threshold": "BLOCK_NONE"
+                },
+                {
+                    "category": "HARM_CATEGORY_HATE_SPEECH",
+                    "threshold": "BLOCK_NONE"
+                },
+                {
+                    "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                    "threshold": "BLOCK_NONE"
+                },
+                {
+                    "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                    "threshold": "BLOCK_NONE"
+                }
+            ]
+        },
+        "evaluator": {
+            "model_name": "gemini-3-flash-preview",
+            "category": "gemini",
+            "safety_settings": [
+                {
+                    "category": "HARM_CATEGORY_HARASSMENT",
+                    "threshold": "BLOCK_NONE"
+                },
+                {
+                    "category": "HARM_CATEGORY_HATE_SPEECH",
+                    "threshold": "BLOCK_NONE"
+                },
+                {
+                    "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                    "threshold": "BLOCK_NONE"
+                },
+                {
+                    "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                    "threshold": "BLOCK_NONE"
+                }
+            ]
+        },
+        "reflector": {
+            "model_name": "gemini-3-pro-preview",
+            "category": "gemini",
+            "safety_settings": [
+                {
+                    "category": "HARM_CATEGORY_HARASSMENT",
+                    "threshold": "BLOCK_NONE"
+                },
+                {
+                    "category": "HARM_CATEGORY_HATE_SPEECH",
+                    "threshold": "BLOCK_NONE"
+                },
+                {
+                    "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                    "threshold": "BLOCK_NONE"
+                },
+                {
+                    "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                    "threshold": "BLOCK_NONE"
+                }
+            ]
+        },
+        "planner": {
+            "model_name": "gpt-5",
+            "category": "openai",
+            "description": "OpenAI GPT-4o-mini for planning"
+        }
+    },
+    "brea": {
+        "router": {
+            "model_name": "gemini-2.5-flash",
+            "category": "gemini"
+        },
+        "evaluator": {
+            "model_name": "gemini-2.5-flash",
+            "category": "gemini"
+        },
+        "reflector": {
+            "model_name": "gemini-2.5-flash",
+            "category": "gemini"
+        },
+        "planner": {
+            "model_name": "gemini-2.5-flash",
+            "category": "gemini"
+        }
+    }
+}
