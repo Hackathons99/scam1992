@@ -1,7 +1,7 @@
 {
     "all": {
         "router": {
-            "model_name": "gemini-3-flash-preview",
+            "model_name": "gemini-2.5-flash-lite",
             "category": "gemini",
             "safety_settings": [
                 {
@@ -23,7 +23,7 @@
             ]
         },
         "evaluator": {
-            "model_name": "gemini-3-flash-preview",
+            "model_name": "gemini-2.5-flash-lite",
             "category": "gemini",
             "safety_settings": [
                 {
@@ -45,7 +45,7 @@
             ]
         },
         "reflector": {
-            "model_name": "gemini-3-pro-preview",
+            "model_name": "gemini-2.5-flash-lite",
             "category": "gemini",
             "safety_settings": [
                 {
@@ -67,26 +67,7 @@
             ]
         },
         "planner": {
-            "model_name": "gpt-5",
-            "category": "openai",
-            "description": "OpenAI GPT-4o-mini for planning"
-        }
-    },
-    "brea": {
-        "router": {
-            "model_name": "gemini-2.5-flash",
-            "category": "gemini"
-        },
-        "evaluator": {
-            "model_name": "gemini-2.5-flash",
-            "category": "gemini"
-        },
-        "reflector": {
-            "model_name": "gemini-2.5-flash",
-            "category": "gemini"
-        },
-        "planner": {
-            "model_name": "gemini-2.5-flash",
+            "model_name": "gemini-2.5-flash-lite",
             "category": "gemini"
         }
     }

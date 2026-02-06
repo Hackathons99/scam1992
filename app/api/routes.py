@@ -35,6 +35,33 @@ async def get_api_key(api_key: str = Security(api_key_header)):
          )
     return api_key
 
+import asyncio
+import random
+
+# Timeout for agent response (25 seconds to leave buffer for network latency)
+AGENT_TIMEOUT_SECONDS = 25
+
+# Fallback responses for different scam scenarios
+FALLBACK_RESPONSES = [
+    "Oh my goodness, I'm so worried now! What do I need to do? Please tell me more about this case.",
+    "This is very scary, Officer. I want to cooperate fully. What details do you need from me?",
+    "I don't want any trouble! Please help me understand what's happening with my account.",
+    "Oh no, I had no idea! What information do you need to verify my identity?",
+    "Please don't arrest me! I'll do whatever you say. What should I do next?"
+]
+
+async def run_agent_with_timeout(agent, user_message: str, timeout: float):
+    """Run agent with timeout, return fallback response if timeout occurs."""
+    try:
+        response = await asyncio.wait_for(
+            agent.initiate_agent(user_message, passed_from="user"),
+            timeout=timeout
+        )
+        return response, False  # response, timed_out
+    except asyncio.TimeoutError:
+        logger.warning(f"Agent timed out after {timeout}s, using fallback response")
+        return None, True  # response, timed_out
+
 @router.post("/analyze", response_model=AnalysisResponse, dependencies=[Depends(get_api_key)])
 async def analyze_message(request: AnalysisRequest):
     """
@@ -64,15 +91,30 @@ async def analyze_message(request: AnalysisRequest):
             "scam_detected": False
         })
         
-        # 4. Construct Query
-        user_message = request.message.text
+        # 4. Construct Query with Full Conversation Context
+        # Format history for the agent to understand conversation flow
+        history_context = ""
+        if request.conversationHistory:
+            history_lines = []
+            for msg in request.conversationHistory:
+                role = "Scammer" if msg.sender == "scammer" else "You (victim)"
+                history_lines.append(f"{role}: {msg.text}")
+            history_context = "Previous conversation:\n" + "\n".join(history_lines) + "\n\n"
         
-        # 5. Invoke Agent
-        response = await agent.initiate_agent(user_message, passed_from="user")
+        # Combine history with current message
+        full_query = f"{history_context}Scammer's latest message: {request.message.text}"
         
-        # 6. Parse Response
+        # 5. Invoke Agent with Timeout
+        response, timed_out = await run_agent_with_timeout(
+            agent, full_query, AGENT_TIMEOUT_SECONDS
+        )
+        
+        # 6. Parse Response or use fallback
         agent_answer = ""
-        if isinstance(response, dict):
+        if timed_out:
+            # Use a random fallback response that sounds like a naive victim
+            agent_answer = random.choice(FALLBACK_RESPONSES)
+        elif isinstance(response, dict):
             agent_answer = response.get("answer", str(response))
         else:
             agent_answer = str(response)

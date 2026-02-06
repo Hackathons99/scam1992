@@ -1,10 +1,10 @@
 from pydantic import BaseModel, Field
-from typing import List, Optional, Dict, Any
+from typing import List, Optional, Dict, Any, Union
 
 class Message(BaseModel):
     sender: str  # "scammer" or "user"
     text: str
-    timestamp: str
+    timestamp: Union[int, str]  # Accept both epoch (int) and string formats
 
 class Metadata(BaseModel):
     channel: Optional[str] = None
