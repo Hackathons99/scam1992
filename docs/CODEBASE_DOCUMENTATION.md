@@ -291,7 +291,7 @@ Let's follow a scam message through the entire system:
 A scammer sends: `"Your SBI account will be blocked. Share OTP now."`
 
 The message arrives at `POST /api/v1/analyze` with headers:
-- `x-api-key: shAMhemWe27jd893SHw8dModPsbkbq23CS7YE2LAsj`
+- `x-api-key: YOUR_SECRET_API_KEY`
 
 ### Step 2: Authentication Check
 `routes.py` validates the API key. If invalid → 403 error. If valid → continue.
