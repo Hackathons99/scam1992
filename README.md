@@ -235,8 +235,11 @@ railway up
 ## 👥 Team
 
 This project was built for **GUVI Hackathon** by:
-- [Your Name]
-- [Your Friend's Name]
+
+| Name | LinkedIn | GitHub |
+|------|----------|--------|
+| **Sathvik V** | [Connect](http://www.linkedin.com/in/sathvik-v17) | [@404-GeniusNotFound](https://github.com/404-GeniusNotFound) |
+| **Shaunak G Roy** | [Connect](https://www.linkedin.com/in/shaunak-g-r-652225289/) | [@shaunthecomputerscientist](https://github.com/shaunthecomputerscientist) |
 
 ---
 
